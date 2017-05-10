@@ -8,7 +8,8 @@ env:
 before_script:
   - make clean
   - make fmt
-  - make vet
+
+
 
 install:
   - wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
@@ -17,7 +18,8 @@ install:
   - export PATH="$HOME/bin:$PATH"
 
 script:
-  - make fmt
+  - make vet
+  - make lint
   - make check test tests
   - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash travis/branch-feature; fi
   - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash travis/branch-develop; fi
