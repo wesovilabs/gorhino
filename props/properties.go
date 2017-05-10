@@ -1,8 +1,8 @@
 package props
 
 import (
-	"gihub.com/wesovilabs/gorhino/util"
 	"fmt"
+	"gihub.com/wesovilabs/taurus/util"
 	"github.com/BurntSushi/toml"
 	"github.com/op/go-logging"
 	"time"

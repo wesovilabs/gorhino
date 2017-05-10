@@ -1,7 +1,7 @@
 package server
 
 import (
-	"gihub.com/wesovilabs/gorhino/props"
+	"gihub.com/wesovilabs/taurus/props"
 	"github.com/op/go-logging"
 	"net/http"
 	"time"

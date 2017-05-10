@@ -14,28 +14,6 @@ type Todo struct {
 	Created   time.Time `json:"createdon"`
 }
 
-
-type jsonInterface interface {
-	marshal(v interface{}, prefix, indent string) ([]byte, error)
-}
-
-type jsonMock struct {
-		result	string
-}
-
-type JsonMarshal struct {
-
-}
-
-func (JsonMarshal) marshal(v interface{}, prefix, indent string) ([]byte, error){
-	return json.MarshalIndent(v,prefix,indent)
-}
-
-func (*jsonMock) marshal(v interface{}, prefix, indent string) ([]byte, error){
-	return []byte("{\"demo\":\"a\"}"),nil
-}
-
-
 //DefaultHandler -
 func DefaultHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
@@ -48,7 +26,7 @@ func DefaultHandler(w http.ResponseWriter, r *http.Request) {
 	)
 	var todo Todo
 	todo.Created = time.Now()
-	response, err := JsonMarshal{}.marshal([]Todo{todo}, "", "    ")
+	response, err := json.MarshalIndent([]Todo{todo}, "", "    ")
 	if err != nil {
 
 	}
