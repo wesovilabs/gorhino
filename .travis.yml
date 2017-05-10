@@ -7,9 +7,6 @@ env:
 
 before_script:
   - make clean
-  - make fmt
-
-
 
 install:
   - wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
@@ -19,12 +16,17 @@ install:
 
 script:
   - make vet
+  - make fmt
   - make lint
   - make check test tests
   - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash travis/branch-develop; fi
   - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash travis/branch-master; fi
 
-after_success:
-  - "chmod a+x ./.travis/scripts/travis-automerge"
-  - "BRANCHES_TO_MERGE_REGEX='^feature/.*$' BRANCH_TO_MERGE_INTO=develop GITHUB_REPO=wesovilabs/taurus ./.travis/scripts/travis-automerge"
+notifications: # set notification options
+  email:
+    recipients:
+      - developer@wesovilabs.com
+    on_success: change
+    on_failure: always
+
 

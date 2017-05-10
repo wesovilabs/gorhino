@@ -1,4 +1,4 @@
-PACKAGE  = gihub.com/wesovilabs/taurus
+PACKAGE  = github.com/wesovilabs/taurus
 DATE    ?= $(shell date +%FT%T%z)
 VERSION ?= $(shell git describe --tags --always --dirty --match=v* 2> /dev/null || \
 			cat $(CURDIR)/.version 2> /dev/null || echo v0)
@@ -118,6 +118,11 @@ clean: ; $(info $(M) cleaning…)	@ ## Cleanup everything
 	@rm -rf bin
 	@rm -rf test/tests.* test/coverage.*
 	@mkdir $(GOPATH)
+
+
+.PHONY: dockerBuild
+dockerBuild: ; $(info $(M) docker build…)	@ ## Build docker image
+	docker build -t wesovilabs/taurus:0.0.1 .
 
 .PHONY: vet
 vet: ; $(info $(M) vet…)	@ ## Examine source code and reports suspicious constructs
