@@ -1,10 +1,10 @@
 package main
 
 import (
-	"gihub.com/wesovilabs/gorhino/api"
-	"gihub.com/wesovilabs/gorhino/logger"
-	"gihub.com/wesovilabs/gorhino/props"
-	"gihub.com/wesovilabs/gorhino/server"
+	"gihub.com/wesovilabs/taurus/api"
+	"gihub.com/wesovilabs/taurus/logger"
+	"gihub.com/wesovilabs/taurus/props"
+	"gihub.com/wesovilabs/taurus/server"
 	"github.com/gorilla/mux"
 	"github.com/op/go-logging"
 )

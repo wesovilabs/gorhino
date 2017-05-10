@@ -1,6 +1,6 @@
 # swat-demo-rest-api configuration file
 [Server]
 Hostname = "127.0.0.1"
-Port = "9004"
+Port = "5000"
 WriteTimeout = 5 # Timeout in seconds
 ReadTimeout = 3 # Timeout in seconds

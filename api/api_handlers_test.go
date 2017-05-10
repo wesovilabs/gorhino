@@ -1,19 +1,13 @@
 package api
 
 import (
-
 	"net/http"
+	"net/http/httptest"
 	"testing"
 )
 
 //TestDefaultHandler - TestDefaultHandler
 func TestDefaultHandler(t *testing.T) {
-
-	var w http.ResponseWriter = nil
-	var r *http.Request = nil
-
-	DefaultHandler(w,r)
-/**
 
 	req, err := http.NewRequest("GET", "/api/v0/vehicles", nil)
 	if err != nil {
@@ -21,8 +15,6 @@ func TestDefaultHandler(t *testing.T) {
 	}
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(DefaultHandler)
-
-
 
 	// Our handlers satisfy http.Handler, so we can call their ServeHTTP method
 	// directly and pass in our Request and ResponseRecorder.
@@ -33,6 +25,5 @@ func TestDefaultHandler(t *testing.T) {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 	}
-**/
 
 }
