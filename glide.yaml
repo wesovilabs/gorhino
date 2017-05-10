@@ -1,0 +1,8 @@
+package: gihub.com/wesovilabs/gorhino
+import:
+- package: github.com/gorilla/mux
+  version: ^1.3.0
+- package: github.com/BurntSushi/toml
+  version: ^0.3.0
+- package: github.com/op/go-logging
+  version: ^1.0.0

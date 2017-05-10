@@ -1,0 +1,5 @@
+make fmt
+make check test tests
+make test-coverage
+make lint
+make

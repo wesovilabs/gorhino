@@ -1,0 +1,25 @@
+language: go
+go:
+  - 1.7.x
+
+env:
+  - GLIDE_VERSION=0.12.3
+
+before_script:
+  - make clean
+  - make fmt
+  - make vet
+
+install:
+  - wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
+  - mkdir -p $HOME/bin
+  - tar -vxz -C $HOME/bin --strip=1 -f glide-v${GLIDE_VERSION}-linux-amd64.tar.gz
+  - export PATH="$HOME/bin:$PATH"
+
+script:
+  - make fmt
+  - make check test tests
+  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash travis/branch-feature; fi
+  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash travis/branch-develop; fi
+  - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash travis/branch-master; fi
+
