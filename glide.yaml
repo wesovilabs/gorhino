@@ -6,3 +6,6 @@ import:
   version: ^0.3.0
 - package: github.com/op/go-logging
   version: ^1.0.0
+- package: github.com/golang/mock
+  subpackages:
+  - mockgen
