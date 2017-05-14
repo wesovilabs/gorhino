@@ -1,6 +1,12 @@
 language: go
 go:
   - 1.7.x
+
+sudo: required
+
+services:
+  - docker
+
 env:
   global:
     - secure: "M+kBVKm38h6ATtURKbLUsG0HYcXjNFnG5m2x+yaUQIWC7wU3uzRmq/5KRiX2KDVbQe3CQfsbS9kjuOB1rXA+H84N3BuWNAtxaYVBZ8UT6BpfvoCVnZRwfhgwb5Oj1AOvNiXnTjjB+eosz8G2lVmcs8bOs+Ps+IB0ZrywHpR2ErtXCUTGA0Tv2cStnFLrPLDGlav+jaqwjRkljkhFxGNtdihMFNR079HyEeyLP2vl0J1BZIPF783gV0s8ir8ofHW1PsDo3kV2FhXdaZAYbqGLHhZecFCQT8BRJhWd3+zPG8DkVwlow04YG8IXZNZSFzWOC7E4jyPo7n1ASkB8UjCzSjjLWeoSOfu2mivoD1sQUFvOeN5plVRPsiIverXNv53GsB7Y2+/QTtdzDhFSMn7/KR2jb4G6szgLPbvSCsh9lPcN+ghDtafHh5etjxpcvgXx4p1RIknJAYLUFydVJcMdh/4D7hA20V3fbw5tRY7i/PS2Ha+atFhBMDVvF7kDL8seSvvgx9c/kQXPMwIn8YUi9yKen7X2OlH6nft0W4l5XvtiKHjj5vVM7kG4WUTC/1CRsAeuOn1jhPeLCoKgl5tHrZfPuZac4xSPo/XMya8oIVsgEnjVwqqCdaZ0fLHsfA344klNCPtZoX3YqhcnHmkmSaDD34rrQYlmOSWPdOmJn8w=" # DOCKER_EMAIL
