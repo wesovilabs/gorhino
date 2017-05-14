@@ -22,4 +22,4 @@ RUN go install
 
 ENTRYPOINT $GOPATH/bin/taurus
 
-EXPOSE 7895
+EXPOSE 7000

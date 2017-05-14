@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"log"
@@ -36,6 +37,17 @@ func DefineDefaultHandlers(router *mux.Router) {
 	})
 }
 
+func respondWithError(w http.ResponseWriter, code int, message string) {
+	respondWithJSON(w, code, map[string]string{"error": message})
+}
+
+func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
+	response, _ := json.Marshal(payload)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
+	w.Write(response)
+}
+
 func configureAuthenticatedRouter(router *mux.Router, authenticatedRouter *mux.Router) (*mux.Router, error) {
 	authenticatedRouter = router.Headers("Content-Type", "application/json").MatcherFunc(func(r *http.Request, rm *mux.RouteMatch) bool {
 		adminToken := r.Header.Get("X-Authorization")
@@ -48,13 +60,11 @@ func configureAuthenticatedRouter(router *mux.Router, authenticatedRouter *mux.R
 }
 
 func defineAnonymousResources(router *mux.Router) (*mux.Router, error) {
-	router.HandleFunc("/vehicles", DefaultHandler).Methods("POST").Name("CreateVehicle")
-	router.HandleFunc("/vehicles", DefaultHandler).Methods("GET").Name("GetListOfVehicles")
-	router.HandleFunc("/vehicles/{name}", DefaultHandler).Methods("GET").Name("GetCarDetails")
+	router.HandleFunc("/domains", createDomainHandler).Methods("POST").Name("CreateDomain")
 	return router, nil
 }
 
 func defineAuthenticatedResources(router *mux.Router) (*mux.Router, error) {
-	router.HandleFunc("/{id:[0-9]+}", DefaultHandler).Methods("POST")
+	//router.HandleFunc("/{id:[0-9]+}", DefaultHandler).Methods("POST")
 	return router, nil
 }

@@ -1,12 +1,12 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
+	"github.com/op/go-logging"
 	"github.com/wesovilabs/taurus/api"
 	"github.com/wesovilabs/taurus/logger"
 	"github.com/wesovilabs/taurus/props"
 	"github.com/wesovilabs/taurus/server"
-	"github.com/gorilla/mux"
-	"github.com/op/go-logging"
 )
 
 var log = logging.MustGetLogger("swat_demo_rest_api")

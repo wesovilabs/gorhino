@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/wesovilabs/taurus/props"
 	"github.com/op/go-logging"
+	"github.com/wesovilabs/taurus/props"
 	"net/http"
 	"time"
 )

@@ -1,6 +1,8 @@
 # swat-demo-rest-api configuration file
 [Server]
 Hostname = ""
-Port = "7895"
+Port = "7000"
 WriteTimeout = 5 # Timeout in seconds
 ReadTimeout = 3 # Timeout in seconds
+[Database]
+Path = "db/taurus.db"
