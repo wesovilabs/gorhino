@@ -32,13 +32,10 @@ script:
   - make fmt
   - make lint
   - make check test tests
-  - if [[ "$TRAVIS_BRANCH" = /^master$/ ]]; then export TAG="$VERSION"; fi
-  - if [[ "$TRAVIS_BRANCH" = /^develop$/ ]]; then export TAG="$VERSION-develop"; fi
-  - if [[ "$TRAVIS_BRANCH" = /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; fi
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo $VERSION;  fi`
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "$VERSION-develop";  fi`
-  - export TAG=`if [ "$TRAVIS_BRANCH" == /^feature/.*$/  ]; then echo "$VERSION-feature";  fi`
-  - docker build -t level-three-rest -t $REPO:$TAG -f Dockerfile .
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo '$VERSION-develop';  fi`
+  - export TAG=`if [ "$TRAVIS_BRANCH" == /^feature/.*$/  ]; then echo '$VERSION-feature';  fi`
+  - docker build -t wesovilabs/taurus -t $REPO:$TAG -f Dockerfile .
 
 after_success:
   - echo "$TAG"
