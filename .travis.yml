@@ -16,7 +16,6 @@ env:
     - COMMIT=${TRAVIS_COMMIT::8}
   matrix:
     - GLIDE_VERSION=0.12.3
-    -
 
 before_script:
   - make clean
