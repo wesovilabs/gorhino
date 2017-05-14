@@ -30,8 +30,8 @@ script:
   - make fmt
   - make lint
   - make check test tests
-  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash travis/branch-develop; fi
-  - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash travis/branch-master; fi
+  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
+  - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
   - if [ "$TRAVIS_BRANCH" == /^master/ ]; then
       export TAG="latest";
     else if [ "$TRAVIS_BRANCH" == /^develop$/ ]; then
@@ -42,11 +42,7 @@ script:
   - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=wesovilabs/taurus
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+  - bash .travis/scripts/build-docker-image_and_publish.sh
 
 notifications:
   email:
