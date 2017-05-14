@@ -16,6 +16,7 @@ env:
     - COMMIT=${TRAVIS_COMMIT::8}
   matrix:
     - GLIDE_VERSION=0.12.3
+    -
 
 before_script:
   - make clean
@@ -33,7 +34,13 @@ script:
   - make check test tests
   - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash travis/branch-develop; fi
   - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash travis/branch-master; fi
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      export TAG="latest";
+    else if [ "$TRAVIS_BRANCH" == "develop" ]; then
+      export TAG="develop";
+    else
+      export TAG="feature";
+    fi
   - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
