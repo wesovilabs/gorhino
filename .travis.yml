@@ -35,10 +35,14 @@ script:
   - if [[ "$TRAVIS_BRANCH" = /^master$/ ]]; then export TAG="$VERSION"; fi
   - if [[ "$TRAVIS_BRANCH" = /^develop$/ ]]; then export TAG="$VERSION-develop"; fi
   - if [[ "$TRAVIS_BRANCH" = /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; fi
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo $VERSION;  fi`
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "$VERSION-develop";  fi`
+  - export TAG=`if [ "$TRAVIS_BRANCH" == /^feature/.*$/  ]; then echo "$VERSION-feature";  fi`
+  - docker build -t level-three-rest -t $REPO:$TAG -f Dockerfile .
 
 after_success:
   - echo "$TAG"
-  - docker build -t $REPO:$TAG -f Dockerfile .
+  #- docker build -t $REPO:$TAG -f Dockerfile .
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
