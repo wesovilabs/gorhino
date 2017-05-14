@@ -14,6 +14,7 @@ env:
     - secure: "xvcmxP312BqiB/6m81p7gLBDX2LBNxfU764Q6yShX3G7bRcnXEE3HMW1LPhzTDF55qNFAxLFUV40dkPmsqipXxq/SEL6nI8fVlz5YQXt09WOFK6yFODL9Y5wH8sF9Cri7VARp6hiZHC8JBJipAIO7FCgPlHOGS5XSy0P9SfEgXFg48X1f7gmEi4xEbTKCzW13G3TvOwPg10GHTeDD5qr8BaMTMfHuoWtK/xyuYeOn0Yogy9Jee3cmCVlfDc6kVU0zigTDghBtBCFzfbfylsgjVnEUTT6ds0CWDzt3SW4ZpMiKAQ6PiX3dl7sm1Ju/pdqcXpFIEoKjEFcEoIh89xO5pC4BUL7+bOhEVFJuvuVOYl+XiqNyNQExQ9qi5iLE4zYXSoneEdGE/A+E+f31X6pLy5dmHbe7FCAfbo/T14OVPJIVVEm+BrrJ87zeifA7S3he8b+D5vS9IokHV4wiCosRqK94W0v9TfKJ+rA8pSra9H0Sqa+PZV8EvXxEzIYe+hzQMQzV7rKSk5I4+GCmn8w9xl5FWQVDF3K8OPEINOVassfqPT/Cd/OCzepVkkS1TdeCa+frWB/hpjdtRIzrIg3N/lkb7dZFMaiGR9KIqLi6wa9HzogIANW6RfofDaC31KNmkwk11CGGceX6N8iecEoIR4ICduo7jsX4lcmexIk17I="
     - secure: "NH6s7+bd10GVscFCz26907xj1zeyjMNwGixR8u92ZsxLycFP1sdSjPAnQEO9Fs4JY84YR/VT0fw3MgEdlfkttubIlXQ8n5PhdKK1gCcyRPdfpoRLFUFswpExQS4R+UiYC5kTe6H1K4Tnt+rxw6x9AFfjEdawTygXHwCXYId8DaaTeNy+otDnKb2zkdHyTAN5ysp0P2nZx3lXH/4u/eR9oRnIaVYCjRzcuzNFDMRwJI0JxQ6WEpzOi4xOalQm90tOvKKQ7in2gPc7uKADMiaDCweFx/M/Et/QqcH0gAv/O4eWBPgcQK4hhjJ+WBvrmrqgduUwWYce/j9NM19ctP2X7AAx4F4RlJ4HBDzNeQH7uhaDPxTSnFuMLwuwPsdbAaJbtFdxh37SjoCHB8AzEUM9TquPLaVD8wkQHgYP7XKzAJBPk2Ow4mWH/GBnqo3BQMejZbwTg2c7BplvmT7edAnkzM1i26cNZS7K3GiD5amYFbWTT80Zio9ZIvSnRTzeRXTyPwaRoaXsSDearZPtWWJQgDxVJRuzrF5cO8I3bseB46F/XvmZYV03wOniN366dd2CRjlZmcQNMCTczeIQKJYFF4oyHOsJBg0FHyDipOgEqKfM6PboytT/F6zPuXdSmbKqUWtetk1c+hzX3Mt6OdSUWOJcCLdcNM0V91w7DAVpIRI="
     - REPO=wesovilabs/taurus
+    - TAG=0.0.1
     - COMMIT=${TRAVIS_COMMIT::8}
     - GLIDE_VERSION=0.12.3
 before_script:
@@ -30,12 +31,16 @@ script:
   - make fmt
   - make lint
   - make check test tests
-  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
-  - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
-  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash .travis/feature.sh; fi
+  #- if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
+  #- if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
+  #- if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash .travis/feature.sh; fi
 
-#after_success:
-#  - bash .travis/scripts/build-docker-image_and_publish.sh
+after_success:
+  - docker build -t $REPO:$TAG -f Dockerfile .
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
 
 notifications:
   email:
