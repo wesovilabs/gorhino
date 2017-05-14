@@ -32,14 +32,6 @@ script:
   - make check test tests
   - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
   - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
-  - if [ "$TRAVIS_BRANCH" == /^master/ ]; then
-      export TAG="latest";
-    else if [ "$TRAVIS_BRANCH" == /^develop$/ ]; then
-      export TAG="develop";
-    else
-      export TAG="feature";
-    fi
-  - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
   - bash .travis/scripts/build-docker-image_and_publish.sh

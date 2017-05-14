@@ -16,23 +16,28 @@ publishDockerImage(){
 
 
 
-if [ "$TRAVIS_BRANCH" == /^master/ ]
+if [[ "$TRAVIS_BRANCH" == /^master$/ ]]
 then
     export TAG="latest";
     buildDockerImage
     publishDockerImage
-else
-    if [ "$TRAVIS_BRANCH" == /^develop$/ ]
-    then
-        export TAG="develop";
-        buildDockerImage
-        publishDockerImage
-    else
-        export TAG="feature";
-        buildDockerImage
-        publishDockerImage
-    fi
 fi
+
+
+if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]
+then
+    export TAG="develop";
+    buildDockerImage
+    publishDockerImage
+fi
+
+if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]
+then
+    export TAG="develop";
+    buildDockerImage
+    publishDockerImage
+fi
+
 
 
 
