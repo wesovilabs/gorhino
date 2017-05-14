@@ -37,7 +37,7 @@ script:
   - if [[ "$TRAVIS_BRANCH" = /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; fi
 
 after_success:
-  - echo $TAG
+  - echo "$TAG"
   - docker build -t $REPO:$TAG -f Dockerfile .
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker tag $REPO:$COMMIT $REPO:$TAG
