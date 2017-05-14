@@ -32,9 +32,10 @@ script:
   - make check test tests
   - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
   - if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
+  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash .travis/feature.sh; fi
 
-after_success:
-  - bash .travis/scripts/build-docker-image_and_publish.sh
+#after_success:
+#  - bash .travis/scripts/build-docker-image_and_publish.sh
 
 notifications:
   email:

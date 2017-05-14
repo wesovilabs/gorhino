@@ -33,7 +33,7 @@ fi
 
 if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]
 then
-    export TAG="develop";
+    export TAG="feature";
     buildDockerImage
     publishDockerImage
 fi
