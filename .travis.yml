@@ -32,12 +32,9 @@ script:
   - make fmt
   - make lint
   - make check test tests
-  #- if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
-  #- if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
-  #- if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash .travis/feature.sh; fi
-  - if [[ "$TRAVIS_BRANCH" = /^master$/ ]]; then export TAG="latest"; fi
-  - if [[ "$TRAVIS_BRANCH" = /^develop$/ ]]; then export TAG="develop"; fi
-  - if [[ "$TRAVIS_BRANCH" = /^feature/.*$/ ]]; then export TAG="feature"; fi
+  - if [[ "$TRAVIS_BRANCH" = /^master$/ ]]; then export TAG="$VERSION"; fi
+  - if [[ "$TRAVIS_BRANCH" = /^develop$/ ]]; then export TAG="$VERSION-develop"; fi
+  - if [[ "$TRAVIS_BRANCH" = /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; fi
 
 after_success:
   - docker build -t $REPO:$TAG -f Dockerfile .
