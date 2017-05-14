@@ -1,10 +1,10 @@
 package props
 
 import (
-	"gihub.com/wesovilabs/gorhino/util"
 	"fmt"
 	"github.com/BurntSushi/toml"
 	"github.com/op/go-logging"
+	"github.com/wesovilabs/taurus/util"
 	"time"
 )
 
@@ -13,15 +13,21 @@ var log = logging.MustGetLogger("swat_demo_rest_api")
 
 //Properties - properties structure
 type Properties struct {
-	Server Server
+	Server   Server
+	Database Database
 }
 
-//Server - server structure
+//Server - server configuration properties
 type Server struct {
 	Hostname     string
 	Port         string
 	WriteTimeout time.Duration
 	ReadTimeout  time.Duration
+}
+
+//Database - database configuration propeties
+type Database struct {
+	Path string
 }
 
 //LoadProperties - loading properties from configuration file
