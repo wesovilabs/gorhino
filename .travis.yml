@@ -35,7 +35,7 @@ script:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo $VERSION;  fi`
   - export TAG=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo '$VERSION-develop';  fi`
   - export TAG=`if [ "$TRAVIS_BRANCH" == /^feature/.*$/  ]; then echo '$VERSION-feature';  fi`
-  - docker build -t wesovilabs/taurus -t $REPO:$TAG -f Dockerfile .
+  - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
   - echo "$TAG"
