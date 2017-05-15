@@ -27,6 +27,12 @@ var createDomainScenario = []struct {
 		bytes.NewBuffer([]byte(`{"uid": "wsv.demo"}`)),
 		http.StatusBadRequest,
 	},
+	{
+		"PATCH",
+		"/api/v0/domains",
+		bytes.NewBuffer([]byte(`{"uid": "wsv.demo"}`)),
+		http.StatusBadRequest,
+	},
 }
 
 func TestCreateDomainHandler(t *testing.T) {
