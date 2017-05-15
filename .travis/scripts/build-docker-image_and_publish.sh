@@ -29,7 +29,7 @@ publishDockerImage(){
     docker push $REPO
     return 0
 }
-
+echo "$TAG"
 buildDockerImage
 publishDockerImage
 
