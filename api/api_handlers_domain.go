@@ -20,10 +20,18 @@ func createDomainHandler(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	defer req.Body.Close()
-	if err := domain.isValid(); err != nil {
+	if err := domain.IsValid(); err != nil {
 		respondWithError(res, http.StatusBadRequest, err.Error())
 		return
 	}
+	currentDomain, err := dBClient.QueryDomain(domain.UID)
+	if err != nil {
+		if currentDomain.UID == domain.UID {
+			respondWithError(res, http.StatusConflict, "AccountUID already in use")
+		}
+		dBClient.CreateDomain(domain)
+	}
+
 	/**
 	if err := json.MarshalJSON(domain); err != nil {
 		panic(err)
@@ -31,5 +39,5 @@ func createDomainHandler(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	**/
-	respondWithJSON(res, http.StatusCreated, domain)
+	respondWithJSON(res, http.StatusCreated, nil)
 }

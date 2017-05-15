@@ -24,14 +24,8 @@ var createDomainScenario = []struct {
 	{
 		"POST",
 		"/api/v0/domains",
-		bytes.NewBuffer([]byte(`{"uid": "wsv.demo"}`)),
-		http.StatusBadRequest,
-	},
-	{
-		"PATCH",
-		"/api/v0/domains",
-		bytes.NewBuffer([]byte(`{"uid": "wsv.demo"}`)),
-		http.StatusBadRequest,
+		bytes.NewBuffer([]byte(`{"UID": "wsv.demo"}`)),
+		http.StatusCreated,
 	},
 }
 

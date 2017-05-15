@@ -11,7 +11,14 @@ import (
 
 const pathPrefix string = "/api/v0"
 
-var DBClient db.IBoltClient
+var dBClient db.IBoltClient
+
+//InitializeBoltClient Creates instance and calls the OpenBoltDb and Seed funcs
+func InitializeBoltClient() {
+	dBClient = &db.BoltClient{}
+	dBClient.OpenBoltDb()
+	dBClient.InitializeBucket()
+}
 
 //DefineRestAPI - Defining Rest API for application
 func DefineRestAPI(router *mux.Router) {

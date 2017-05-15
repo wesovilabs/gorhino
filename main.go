@@ -13,7 +13,7 @@ var log = logging.MustGetLogger("swat_demo_rest_api")
 
 func main() {
 	log.Info("Running application.")
-	initializeBoltClient()
+	api.InitializeBoltClient()
 	properties := setUp()
 	router := mux.NewRouter().StrictSlash(false)
 	api.DefineDefaultHandlers(router)
@@ -24,11 +24,4 @@ func main() {
 func setUp() props.Properties {
 	logger.InitializeLogger()
 	return props.LoadProperties()
-}
-
-// Creates instance and calls the OpenBoltDb and Seed funcs
-func initializeBoltClient() {
-	service.DBClient = &db.BoltClient{}
-	service.DBClient.OpenBoltDb()
-	service.DBClient.Seed()
 }
