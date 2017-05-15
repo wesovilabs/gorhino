@@ -20,9 +20,6 @@ env:
     - GLIDE_VERSION=0.12.3
 before_script:
   - make clean
-  - if [[ "$TRAVIS_BRANCH" == /^master$/ ]]; then export TAG="$VERSION"; echo "a"; fi
-  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then export TAG="$VERSION-develop"; echo "b"; fi
-  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; echo "c"; fi
 
 install:
   - wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
@@ -39,12 +36,13 @@ script:
   - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
-  - echo "$TAG"
+  - bash .travis/scripts/build-docker-image_and_publish.sh
+  #- echo "$TAG"
   #- docker build -t $REPO:$TAG -f Dockerfile .
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+  #- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  #- docker tag $REPO:$COMMIT $REPO:$TAG
+  #- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  #- docker push $REPO
 
 notifications:
   email:
