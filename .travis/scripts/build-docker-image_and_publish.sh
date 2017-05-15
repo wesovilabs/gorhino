@@ -14,8 +14,7 @@ then
 fi
 
 
-buildDockerImage
-publishDockerImage
+
 
 
 buildDockerImage(){
@@ -31,5 +30,6 @@ publishDockerImage(){
     return 0
 }
 
-
+buildDockerImage
+publishDockerImage
 
