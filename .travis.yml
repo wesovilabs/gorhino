@@ -20,9 +20,9 @@ env:
     - GLIDE_VERSION=0.12.3
 before_script:
   - make clean
-  - if [[ "$TRAVIS_BRANCH" == /^master$/ ]]; then export TAG="$VERSION"; fi
-  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then export TAG="$VERSION-develop"; fi
-  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; fi
+  - if [[ "$TRAVIS_BRANCH" == /^master$/ ]]; then export TAG="$VERSION"; echo "a"; fi
+  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then export TAG="$VERSION-develop"; echo "b"; fi
+  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then export TAG="$VERSION-feature"; echo "c"; fi
 
 install:
   - wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
