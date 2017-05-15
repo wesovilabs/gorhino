@@ -13,10 +13,6 @@ then
     export TAG="$VERSION-deveelopment";
 fi
 
-
-
-
-
 buildDockerImage(){
     docker build -t $REPO:$TAG -f Dockerfile .
     return 0
