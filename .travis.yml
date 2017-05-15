@@ -15,7 +15,7 @@ env:
     - secure: "NH6s7+bd10GVscFCz26907xj1zeyjMNwGixR8u92ZsxLycFP1sdSjPAnQEO9Fs4JY84YR/VT0fw3MgEdlfkttubIlXQ8n5PhdKK1gCcyRPdfpoRLFUFswpExQS4R+UiYC5kTe6H1K4Tnt+rxw6x9AFfjEdawTygXHwCXYId8DaaTeNy+otDnKb2zkdHyTAN5ysp0P2nZx3lXH/4u/eR9oRnIaVYCjRzcuzNFDMRwJI0JxQ6WEpzOi4xOalQm90tOvKKQ7in2gPc7uKADMiaDCweFx/M/Et/QqcH0gAv/O4eWBPgcQK4hhjJ+WBvrmrqgduUwWYce/j9NM19ctP2X7AAx4F4RlJ4HBDzNeQH7uhaDPxTSnFuMLwuwPsdbAaJbtFdxh37SjoCHB8AzEUM9TquPLaVD8wkQHgYP7XKzAJBPk2Ow4mWH/GBnqo3BQMejZbwTg2c7BplvmT7edAnkzM1i26cNZS7K3GiD5amYFbWTT80Zio9ZIvSnRTzeRXTyPwaRoaXsSDearZPtWWJQgDxVJRuzrF5cO8I3bseB46F/XvmZYV03wOniN366dd2CRjlZmcQNMCTczeIQKJYFF4oyHOsJBg0FHyDipOgEqKfM6PboytT/F6zPuXdSmbKqUWtetk1c+hzX3Mt6OdSUWOJcCLdcNM0V91w7DAVpIRI="
     - REPO=wesovilabs/taurus
     - VERSION=0.0.1
-    - TAG=
+    - TAG=$VERSION
     - COMMIT=${TRAVIS_COMMIT::8}
     - GLIDE_VERSION=0.12.3
 before_script:
@@ -32,19 +32,17 @@ script:
   - make fmt
   - make lint
   - make check test tests
-  #- if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then bash .travis/branch-develop; fi
-  #- if [[ "$TRAVIS_BRANCH" == /^master/ ]]; then bash .travis/branch-master; fi
-  #- if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then bash .travis/feature.sh; fi
-  - if [[ "$TRAVIS_BRANCH" == /^master$/ ]]; then export TAG="latest"; fi
-  - if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]; then export TAG="develop"; fi
-  - if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]; then export TAG="feature"; fi
+  - echo "$TRAVIS_BRANCH"
+  # - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
-  - docker build -t $REPO:$TAG -f Dockerfile .
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+  - bash .travis/scripts/build-docker-image_and_publish.sh
+  #- echo "$TAG"
+  #- docker build -t $REPO:$TAG -f Dockerfile .
+  #- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  #- docker tag $REPO:$COMMIT $REPO:$TAG
+  #- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  #- docker push $REPO
 
 notifications:
   email:
