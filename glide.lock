@@ -1,5 +1,5 @@
-hash: 72b2559f0e2f6bab35e523f9c12348d40ca7b77c1380dec34f3462b7f9c6f920
-updated: 2017-05-14T07:50:46.551070343+02:00
+hash: 9398e7fec80e31fe1c9b83a3c20bfb68f27c24a12e2f160db8655314b978ab70
+updated: 2017-05-17T16:53:39.723363048+02:00
 imports:
 - name: github.com/boltdb/bolt
   version: 583e8937c61f1af6513608ccc75c97b6abdf4ff9
@@ -15,4 +15,12 @@ imports:
   version: 392c28fe23e1c45ddba891b0320b3b5df220beea
 - name: github.com/op/go-logging
   version: b2cb9fa56473e98db8caba80237377e83fe44db5
+- name: github.com/sirupsen/logrus
+  version: ba1b36c82c5e05c4f912a88eab0dcd91a171688f
+  subpackages:
+  - hooks/null
+- name: golang.org/x/sys
+  version: 98b5b1e7e80eb60271c8dc4eba6521ec2c3e811e
+  subpackages:
+  - unix
 testImports: []

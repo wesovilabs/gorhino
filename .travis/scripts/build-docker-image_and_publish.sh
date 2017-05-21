@@ -1,5 +1,8 @@
 #!/bin/sh
 
+export VERSION="0.0.1"
+export TAG="$VERSION-testing";
+
 
 buildDockerImage(){
     docker build -t $REPO:$TAG -f Dockerfile .
@@ -14,31 +17,19 @@ publishDockerImage(){
     return 0
 }
 
-
-
-if [[ "$TRAVIS_BRANCH" == /^master$/ ]]
+if [ "$TRAVIS_BRANCH" == "master" ]
 then
-    export TAG="latest";
+    export TAG="$VERSION";
     buildDockerImage
     publishDockerImage
 fi
 
-
-if [[ "$TRAVIS_BRANCH" == /^develop$/ ]]
+if [ "$TRAVIS_BRANCH" == "develop" ]
 then
-    export TAG="develop";
+    export TAG="$VERSION-development";
     buildDockerImage
     publishDockerImage
 fi
-
-if [[ "$TRAVIS_BRANCH" == /^feature/.*$/ ]]
-then
-    export TAG="feature";
-    buildDockerImage
-    publishDockerImage
-fi
-
-
 
 
 

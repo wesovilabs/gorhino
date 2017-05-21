@@ -2,49 +2,10 @@ package api
 
 import (
 	"encoding/json"
-	"errors"
-	"fmt"
+	"github.com/wesovilabs/taurus/model"
 	"log"
 	"net/http"
 )
-
-type domainSettings struct {
-	domainType string
-	public     bool
-	sandbox    bool
-}
-
-//
-type domain struct {
-	uid      string
-	name     string
-	settings domainSettings
-}
-
-type credentials struct {
-	username string
-	password string
-}
-
-type gitConfiguration struct {
-	credentials credentials
-	uri         string
-	branch      string
-}
-
-type fileSystemConfiguration struct {
-	credentials credentials
-	path        string
-}
-
-func (domain domain) isValid() error {
-	fmt.Print("Result:")
-	fmt.Print(domain.uid)
-	if domain.uid == "" {
-		return errors.New("Missing uuid")
-	}
-	return nil
-}
 
 func createDomainHandler(res http.ResponseWriter, req *http.Request) {
 	if req.Body == nil {
@@ -52,17 +13,25 @@ func createDomainHandler(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	decoder := json.NewDecoder(req.Body)
-	var domain domain
+	var domain model.Domain
 	if err := decoder.Decode(&domain); err != nil {
 		log.Fatal("Error while decoding")
 		respondWithError(res, http.StatusBadRequest, err.Error())
 		return
 	}
 	defer req.Body.Close()
-	if err := domain.isValid(); err != nil {
+	if err := domain.IsValid(); err != nil {
 		respondWithError(res, http.StatusBadRequest, err.Error())
 		return
 	}
+	currentDomain, err := dBClient.QueryDomain(domain.UID)
+	if err != nil {
+		if currentDomain.UID == domain.UID {
+			respondWithError(res, http.StatusConflict, "AccountUID already in use")
+		}
+		dBClient.CreateDomain(domain)
+	}
+
 	/**
 	if err := json.MarshalJSON(domain); err != nil {
 		panic(err)
@@ -70,5 +39,5 @@ func createDomainHandler(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	**/
-	respondWithJSON(res, http.StatusCreated, domain)
+	respondWithJSON(res, http.StatusCreated, nil)
 }
