@@ -1,7 +1,6 @@
 package api
 
 import (
-	"bytes"
 	"io"
 	"log"
 	"net/http"
@@ -20,12 +19,6 @@ var createDomainScenario = []struct {
 		"/api/v0/domains",
 		nil,
 		http.StatusBadRequest,
-	},
-	{
-		"POST",
-		"/api/v0/domains",
-		bytes.NewBuffer([]byte(`{"UID": "wsv.demo"}`)),
-		http.StatusCreated,
 	},
 }
 
