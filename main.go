@@ -13,6 +13,7 @@ var log = logging.MustGetLogger("swat_demo_rest_api")
 
 func main() {
 	log.Info("Running application.")
+	api.InitializeBoltClient()
 	properties := setUp()
 	router := mux.NewRouter().StrictSlash(false)
 	api.DefineDefaultHandlers(router)

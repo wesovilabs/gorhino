@@ -32,8 +32,6 @@ script:
   - make fmt
   - make lint
   - make check test tests
-  - echo "$TRAVIS_BRANCH"
-  # - docker build -t $REPO:$TAG -f Dockerfile .
 
 after_success:
   - bash .travis/scripts/build-docker-image_and_publish.sh

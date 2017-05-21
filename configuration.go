@@ -1,15 +1,13 @@
-package props
+package main
 
 import (
 	"fmt"
 	"github.com/BurntSushi/toml"
-	"github.com/op/go-logging"
 	"github.com/wesovilabs/taurus/util"
 	"time"
 )
 
 var configFile = "./config.toml"
-var log = logging.MustGetLogger("swat_demo_rest_api")
 
 //Properties - properties structure
 type Properties struct {

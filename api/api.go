@@ -4,11 +4,21 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/wesovilabs/taurus/db"
 	"log"
 	"net/http"
 )
 
 const pathPrefix string = "/api/v0"
+
+var dBClient db.IBoltClient
+
+//InitializeBoltClient Creates instance and calls the OpenBoltDb and Seed funcs
+func InitializeBoltClient() {
+	dBClient = &db.BoltClient{}
+	dBClient.OpenBoltDb()
+	dBClient.InitializeBucket()
+}
 
 //DefineRestAPI - Defining Rest API for application
 func DefineRestAPI(router *mux.Router) {
@@ -30,7 +40,6 @@ func DefineRestAPI(router *mux.Router) {
 
 //DefineDefaultHandlers - Defining Default Handlers for application
 func DefineDefaultHandlers(router *mux.Router) {
-	// configure the router to always run this handler when it couldn't match a request to any other handler
 	router.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(fmt.Sprintf("%s not found\n", r.URL)))

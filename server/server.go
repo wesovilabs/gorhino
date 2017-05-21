@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var log = logging.MustGetLogger("swat_demo_rest_api/server")
+var log = logging.MustGetLogger("taurus/server")
 
 //ConfigureServerAndRun - configuring serer and running it
 func ConfigureServerAndRun(router http.Handler, properties props.Properties) {

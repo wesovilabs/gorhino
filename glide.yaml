@@ -11,3 +11,7 @@ import:
   - mockgen
 - package: github.com/boltdb/bolt
   version: ^1.3.0
+- package: github.com/sirupsen/logrus
+  version: ^0.11.5
+  subpackages:
+  - hooks/null
