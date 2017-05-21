@@ -4,3 +4,4 @@
 /test/tests.*
 /test/coverage.*
 test
+bin
