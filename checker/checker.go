@@ -3,6 +3,7 @@ package checker
 import (
 	"time"
 	"github.com/wesovilabs/taurus/connector"
+	"fmt"
 )
 
 var domains []string
@@ -22,7 +23,7 @@ func schedule(appUID string, driver connector.Driver, delay time.Duration) chan 
 	stop := make(chan bool)
 	go func() {
 		for {
-			listenAppConfiguration(appUID, driver)
+			go listenAppConfiguration(appUID, driver)
 			select {
 			case <- time.After(delay):
 			case <- stop:
@@ -34,9 +35,6 @@ func schedule(appUID string, driver connector.Driver, delay time.Duration) chan 
 }
 
 func listenAppConfiguration(appUID string, driver connector.Driver){
-	go updateAppConfiguration(appUID,driver.Configuration())
-}
-
-func updateAppConfiguration(appUID string, appConfiguration string){
-
+	configuration := driver.Configuration()
+	fmt.Println(configuration)
 }

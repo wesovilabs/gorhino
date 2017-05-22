@@ -12,10 +12,12 @@ type GitHub struct {
 	resource 	string
 }
 
+const gitHubUrl = "https://raw.githubusercontent.com/"
+
 //Configuration get Github configuration
 func (gitHub GitHub) Configuration() string {
 	var urlBuffer bytes.Buffer
-	urlBuffer.WriteString("https://raw.githubusercontent.com/")
+	urlBuffer.WriteString(gitHubUrl)
 	urlBuffer.WriteString(gitHub.repository)
 	urlBuffer.WriteString("/")
 	urlBuffer.WriteString(gitHub.branch)
