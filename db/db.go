@@ -23,13 +23,13 @@ type BoltClient struct {
 //OpenBoltDb OpenBoltDb
 func (bc *BoltClient) OpenBoltDb() {
 	var err error
-	bc.boltDB, err = bolt.Open("taurus.db", 0600, nil)
+	bc.boltDB, err = bolt.Open("test/taurus.db", 0600, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-//InitializeBucket  Creates an "AccountBucket" in our BoltDB. It will overwrite any existing bucket of the same name.
+//InitializeBucket  Creates an "DomainBucket" in our BoltDB. It will overwrite any existing bucket of the same name.
 func (bc *BoltClient) InitializeBucket() {
 	bc.boltDB.Update(func(tx *bolt.Tx) error {
 		_, err := tx.CreateBucket([]byte("DomainBucket"))

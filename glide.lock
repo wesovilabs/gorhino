@@ -1,10 +1,12 @@
-hash: 9398e7fec80e31fe1c9b83a3c20bfb68f27c24a12e2f160db8655314b978ab70
-updated: 2017-05-17T16:53:39.723363048+02:00
+hash: a73c3c8b3e5c4095803e0b962239982fe4f33c32915f16f77ad6ae31cbbc5c5a
+updated: 2017-05-21T20:29:41.836171254+02:00
 imports:
 - name: github.com/boltdb/bolt
   version: 583e8937c61f1af6513608ccc75c97b6abdf4ff9
 - name: github.com/BurntSushi/toml
   version: b26d9c308763d68093482582cea63d69be07a0f0
+- name: github.com/docker/libkv
+  version: aabc039ad04deb721e234f99cd1b4aa28ac71a40
 - name: github.com/golang/mock
   version: bd3c8e81be01eef76d4b503f5e687d2d1354d2d9
   subpackages:
@@ -12,7 +14,7 @@ imports:
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
-  version: 392c28fe23e1c45ddba891b0320b3b5df220beea
+  version: bcd8bc72b08df0f70df986b97f95590779502d31
 - name: github.com/op/go-logging
   version: b2cb9fa56473e98db8caba80237377e83fe44db5
 - name: github.com/sirupsen/logrus
@@ -20,7 +22,7 @@ imports:
   subpackages:
   - hooks/null
 - name: golang.org/x/sys
-  version: 98b5b1e7e80eb60271c8dc4eba6521ec2c3e811e
+  version: dbc2be9168a660ef302e04b6ff6406de6f967473
   subpackages:
   - unix
 testImports: []
