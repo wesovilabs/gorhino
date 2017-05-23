@@ -1,0 +1,49 @@
+[
+  {
+    "authentication-service": {
+      "v0": {
+        "local": {
+          "hostname": "localhost",
+          "serverTimeout": 10000
+        },
+        "production": {
+          "hostname": "auth.wesovilabs.com",
+          "serverTimeout": 2000
+        }
+      },
+      "v1": {
+        "local": {
+          "hostname": "localhost",
+          "anonymousMode": true,
+          "serverTimeout": 10000
+        },
+        "production": {
+          "hostname": "v1.auth.wesovilabs.com",
+          "anonymousMode": false,
+          "serverTimeout": 2000
+        }
+      }
+    }
+  },
+  {
+    "mobile-ui": {
+      "v0": {
+        "local": {
+          "theme": "diamond",
+          "language": "es_ES",
+          "fontStyle": "Verdana"
+        },
+        "qa": {
+          "theme": "green",
+          "language": "es_ES",
+          "fontStyle": "Roboto"
+        },
+        "production": {
+          "theme": "blue-marine",
+          "language": "en_UK",
+          "fontStyle": "Roboto"
+        }
+      }
+    }
+  }
+]

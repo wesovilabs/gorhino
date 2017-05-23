@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"github.com/wesovilabs/taurus/checker"
 	"github.com/wesovilabs/taurus/model"
 	"log"
 	"net/http"
@@ -26,18 +27,13 @@ func createDomainHandler(res http.ResponseWriter, req *http.Request) {
 	}
 	currentDomain, err := dBClient.QueryDomain(domain.UID)
 	if err != nil {
-		if currentDomain.UID == domain.UID {
-			respondWithError(res, http.StatusConflict, "AccountUID already in use")
-		}
-		dBClient.CreateDomain(domain)
-	}
 
-	/**
-	if err := json.MarshalJSON(domain); err != nil {
-		panic(err)
-		respondWithError(res,http.StatusInternalServerError,err.Error())
+	}
+	if currentDomain.UID == domain.UID {
+		respondWithError(res, http.StatusConflict, domain.UID+"DomainUID already in use")
+		checker.RegisterDomain(currentDomain)
 		return
 	}
-	**/
-	respondWithJSON(res, http.StatusCreated, nil)
+	dBClient.CreateDomain(domain)
+	respondWithJSON(res, http.StatusCreated, domain)
 }

@@ -1,11 +1,10 @@
 package connector
 
-const (
-	delay = iota
-	cred_username
-	cred_password
+import (
+	"github.com/wesovilabs/taurus/model"
 )
 
+//Driver interface
 type Driver interface {
-	Configuration() string
+	LoadConfiguration() (services []model.Service, err error)
 }

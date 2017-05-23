@@ -17,3 +17,4 @@ import:
   - hooks/null
 - package: github.com/docker/libkv
   version: ^0.2.1
+- package: gopkg.in/mgo.v2

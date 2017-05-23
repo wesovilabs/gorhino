@@ -2,48 +2,72 @@ package model
 
 import (
 	"errors"
-	"fmt"
 )
 
 //DomainSettings structure
 type DomainSettings struct {
-	domainType string
-	public     bool
-	sandbox    bool
+	DomainType string
+	Sandbox    bool
 }
 
 //Domain structure
 type Domain struct {
 	UID      string
-	name     string
-	settings DomainSettings
+	Name     string
+	Settings MongoDBConfiguration
 }
 
 //Credentials structure
 type Credentials struct {
-	username string
-	password string
+	Username string
+	Password string
 }
 
 //GitConfiguration structure
 type GitConfiguration struct {
+	DomainSettings
 	credentials Credentials
 	uri         string
 	branch      string
 }
 
+//MongoDBConfiguration structure
+type MongoDBConfiguration struct {
+	Credentials Credentials
+	Hostname    string
+	Database    string
+	Collection  string
+}
+
 //FileSystemConfiguration structure
 type FileSystemConfiguration struct {
+	DomainSettings
 	credentials Credentials
 	path        string
 }
 
 //IsValid Determines if a domain is valid
 func (domain Domain) IsValid() error {
-	fmt.Print("Result:")
-	fmt.Print(domain.UID)
 	if domain.UID == "" {
 		return errors.New("Missing uuid")
 	}
 	return nil
+}
+
+//ServiceProfile structure
+type ServiceProfile struct {
+	name  string
+	props map[string]interface{}
+}
+
+//ServiceVersion structure
+type ServiceVersion struct {
+	name     string
+	profiles []ServiceProfile
+}
+
+//Service structure
+type Service struct {
+	name     string
+	versions []ServiceVersion
 }

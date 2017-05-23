@@ -1,18 +1,22 @@
-package main
+package server
 
 import (
+	"github.com/op/go-logging"
+	"github.com/wesovilabs/taurus/configuration"
 	"net/http"
 	"time"
 )
 
+var log = logging.MustGetLogger("taurus_server")
 
-func configureServerAndRun(router http.Handler, properties Properties) {
+//ConfigureServerAndRun run server
+func ConfigureServerAndRun(router http.Handler, properties configuration.Properties) {
 	server := configureServer(router, properties)
 	log.Infof("Launching server on %s", server.Addr)
 	log.Fatal(server.ListenAndServe())
 }
 
-func configureServer(router http.Handler, properties Properties) *http.Server {
+func configureServer(router http.Handler, properties configuration.Properties) *http.Server {
 	return &http.Server{
 		Handler:      router,
 		Addr:         properties.Server.ServerAddress(),

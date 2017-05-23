@@ -40,10 +40,11 @@ func DefineRestAPI(router *mux.Router) {
 
 //DefineDefaultHandlers - Defining Default Handlers for application
 func DefineDefaultHandlers(router *mux.Router) {
-	router.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte(fmt.Sprintf("%s not found\n", r.URL)))
+	router.NotFoundHandler = http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+		res.WriteHeader(http.StatusNotFound)
+		res.Write([]byte(fmt.Sprintf("%s not found\n", req.URL)))
 	})
+
 }
 
 func respondWithError(w http.ResponseWriter, code int, message string) {

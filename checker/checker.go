@@ -1,17 +1,21 @@
 package checker
 
 import (
-	"time"
-	"github.com/wesovilabs/taurus/connector"
 	"fmt"
+	"github.com/op/go-logging"
+	"github.com/wesovilabs/taurus/connector"
+	"github.com/wesovilabs/taurus/model"
+	"time"
 )
 
-var domains []string
+var log = logging.MustGetLogger("taurus_checker")
+var domains []model.Domain
 
-var apps = make(map[string]connector.Driver)
-
-func registerDomain(domainUID string) error {
-	domains = append(domains,domainUID)
+//RegisterDomain registering domain to be listened
+func RegisterDomain(domain model.Domain) error {
+	log.Info("Registering domain.")
+	domains = append(domains, domain)
+	schedule(domain, 10*time.Second)
 	return nil
 }
 
@@ -19,14 +23,16 @@ func unRegisterDomain(domainsUID string) error {
 	return nil
 }
 
-func schedule(appUID string, driver connector.Driver, delay time.Duration) chan bool {
+func schedule(domain model.Domain, delay time.Duration) chan bool {
 	stop := make(chan bool)
 	go func() {
 		for {
-			go listenAppConfiguration(appUID, driver)
+			var conf model.MongoDBConfiguration = model.MongoDBConfiguration(domain.Settings)
+			var driver *connector.MongoDB = connector.NewMongoDB(conf.Hostname, conf.Database, conf.Collection)
+			go listenAppConfiguration(driver)
 			select {
-			case <- time.After(delay):
-			case <- stop:
+			case <-time.After(delay):
+			case <-stop:
 				return
 			}
 		}
@@ -34,7 +40,12 @@ func schedule(appUID string, driver connector.Driver, delay time.Duration) chan 
 	return stop
 }
 
-func listenAppConfiguration(appUID string, driver connector.Driver){
-	configuration := driver.Configuration()
+func listenAppConfiguration(driver connector.Driver) {
+	log.Info("Checking configuration for domain....")
+	configuration, error := driver.LoadConfiguration()
+	if error != nil {
+
+	}
+
 	fmt.Println(configuration)
 }

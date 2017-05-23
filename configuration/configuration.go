@@ -1,12 +1,14 @@
-package main
+package configuration
 
 import (
 	"fmt"
 	"github.com/BurntSushi/toml"
+	"github.com/op/go-logging"
 	"github.com/wesovilabs/taurus/util"
 	"time"
 )
 
+var log = logging.MustGetLogger("taurus")
 var configFile = "./config.toml"
 
 //Properties - properties structure

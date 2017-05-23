@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  mongodb:
+    image: mongo:3.5.6
+    ports:
+      - "27047:27017"
+
+  mongo-seed:
+    image: mongo:3.5.6
+    links:
+      - mongodb
+    volumes:
+      - ./seed-data:/seed-data
+    command:
+      'bash -c "mongoimport --host mongodb --type json --collection taurus-demo --file /seed-data/applications-configuration.json --jsonArray"'

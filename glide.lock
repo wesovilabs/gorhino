@@ -1,5 +1,5 @@
-hash: a73c3c8b3e5c4095803e0b962239982fe4f33c32915f16f77ad6ae31cbbc5c5a
-updated: 2017-05-21T20:29:41.836171254+02:00
+hash: c3f78813778a4475be1e3506ca66514264e1eee27d40c1a7da1f2ee10360d248
+updated: 2017-05-23T03:37:37.511918319+02:00
 imports:
 - name: github.com/boltdb/bolt
   version: 583e8937c61f1af6513608ccc75c97b6abdf4ff9
@@ -25,4 +25,6 @@ imports:
   version: dbc2be9168a660ef302e04b6ff6406de6f967473
   subpackages:
   - unix
+- name: gopkg.in/mgo.v2
+  version: 3f83fa5005286a7fe593b055f0d7771a7dce4655
 testImports: []
