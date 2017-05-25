@@ -122,7 +122,7 @@ clean: ; $(info $(M) cleaning…)	@ ## Cleanup everything
 
 .PHONY: dockerBuild
 dockerBuild: ; $(info $(M) docker build…)	@ ## Build docker image
-	docker build -t wesovilabs/taurus:0.0.1 .
+	docker build -t swatlabs/taurus:0.0.1 .
 
 .PHONY: vet
 vet: ; $(info $(M) vet…)	@ ## Examine source code and reports suspicious constructs
