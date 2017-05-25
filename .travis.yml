@@ -27,7 +27,7 @@ script:
 - make check test tests
 after_success:
 - if [ "$TRAVIS_BRANCH" == "develop" ]; then docker build -t $REPO:$VERSION -f Dockerfile
-  .; docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS; docker tag $REPO:$COMMIT
+  .; docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS;
   $REPO:$VERSION; docker push $REPO; fi
 notifications:
   email:
