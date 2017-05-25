@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/wesovilabs/taurus/db"
+	"github.com/swatlabs/taurus/db"
 	"log"
 	"net/http"
 )

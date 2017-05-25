@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/gorilla/mux"
 	"github.com/op/go-logging"
-	"github.com/wesovilabs/taurus/api"
-	"github.com/wesovilabs/taurus/configuration"
-	"github.com/wesovilabs/taurus/server"
+	"github.com/swatlabs/taurus/api"
+	"github.com/swatlabs/taurus/configuration"
+	"github.com/swatlabs/taurus/server"
 )
 
 var log = logging.MustGetLogger("taurus")

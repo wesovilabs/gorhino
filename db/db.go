@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 	"github.com/boltdb/bolt"
-	"github.com/wesovilabs/taurus/model"
+	"github.com/swatlabs/taurus/model"
 	"log"
 )
 

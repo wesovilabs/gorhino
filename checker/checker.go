@@ -3,8 +3,8 @@ package checker
 import (
 	"fmt"
 	"github.com/op/go-logging"
-	"github.com/wesovilabs/taurus/connector"
-	"github.com/wesovilabs/taurus/model"
+	"github.com/swatlabs/taurus/connector"
+	"github.com/swatlabs/taurus/model"
 	"time"
 )
 

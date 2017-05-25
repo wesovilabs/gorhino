@@ -1,7 +1,7 @@
 package connector
 
 import (
-	"github.com/wesovilabs/taurus/model"
+	"github.com/swatlabs/taurus/model"
 )
 
 //Driver interface

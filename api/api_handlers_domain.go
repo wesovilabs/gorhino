@@ -2,8 +2,8 @@ package api
 
 import (
 	"encoding/json"
-	"github.com/wesovilabs/taurus/checker"
-	"github.com/wesovilabs/taurus/model"
+	"github.com/swatlabs/taurus/checker"
+	"github.com/swatlabs/taurus/model"
 	"log"
 	"net/http"
 )

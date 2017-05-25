@@ -2,9 +2,9 @@ FROM golang:1.8.1-alpine
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-ENV PROJECT $GOPATH/src/github.com/wesovilabs/taurus
+ENV PROJECT $GOPATH/src/github.com/swatlabs/taurus
 
-RUN mkdir -p /go/src/github.com/wesovilabs/taurus
+RUN mkdir -p /go/src/github.com/swatlabs/taurus
 RUN mkdir -p "$GOPATH/bin"
 RUN chmod -R 777 "$GOPATH"
 

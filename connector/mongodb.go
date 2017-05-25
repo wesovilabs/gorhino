@@ -2,7 +2,7 @@ package connector
 
 import (
 	"fmt"
-	"github.com/wesovilabs/taurus/model"
+	"github.com/swatlabs/taurus/model"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"

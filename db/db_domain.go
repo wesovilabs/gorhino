@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/boltdb/bolt"
-	"github.com/wesovilabs/taurus/model"
+	"github.com/swatlabs/taurus/model"
 )
 
 //QueryDomain It returns the domain with the uid

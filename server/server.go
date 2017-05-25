@@ -2,7 +2,7 @@ package server
 
 import (
 	"github.com/op/go-logging"
-	"github.com/wesovilabs/taurus/configuration"
+	"github.com/swatlabs/taurus/configuration"
 	"net/http"
 	"time"
 )
