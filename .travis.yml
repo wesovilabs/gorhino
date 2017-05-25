@@ -43,7 +43,7 @@ after_success:
 notifications:
   email:
     recipients:
-      - developer@wesovilabs.com
+      - theswatlabs@gmail.com
     on_success: change
     on_failure: always
 
