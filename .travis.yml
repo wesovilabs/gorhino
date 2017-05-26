@@ -1,50 +1,40 @@
 language: go
 go:
-  - 1.7.x
-
+- 1.7.x
+- 1.8.x
 sudo: required
-
 services:
-  - docker
-
+- docker
 env:
-
   global:
-    - secure: "M+kBVKm38h6ATtURKbLUsG0HYcXjNFnG5m2x+yaUQIWC7wU3uzRmq/5KRiX2KDVbQe3CQfsbS9kjuOB1rXA+H84N3BuWNAtxaYVBZ8UT6BpfvoCVnZRwfhgwb5Oj1AOvNiXnTjjB+eosz8G2lVmcs8bOs+Ps+IB0ZrywHpR2ErtXCUTGA0Tv2cStnFLrPLDGlav+jaqwjRkljkhFxGNtdihMFNR079HyEeyLP2vl0J1BZIPF783gV0s8ir8ofHW1PsDo3kV2FhXdaZAYbqGLHhZecFCQT8BRJhWd3+zPG8DkVwlow04YG8IXZNZSFzWOC7E4jyPo7n1ASkB8UjCzSjjLWeoSOfu2mivoD1sQUFvOeN5plVRPsiIverXNv53GsB7Y2+/QTtdzDhFSMn7/KR2jb4G6szgLPbvSCsh9lPcN+ghDtafHh5etjxpcvgXx4p1RIknJAYLUFydVJcMdh/4D7hA20V3fbw5tRY7i/PS2Ha+atFhBMDVvF7kDL8seSvvgx9c/kQXPMwIn8YUi9yKen7X2OlH6nft0W4l5XvtiKHjj5vVM7kG4WUTC/1CRsAeuOn1jhPeLCoKgl5tHrZfPuZac4xSPo/XMya8oIVsgEnjVwqqCdaZ0fLHsfA344klNCPtZoX3YqhcnHmkmSaDD34rrQYlmOSWPdOmJn8w="
-    - secure: "xvcmxP312BqiB/6m81p7gLBDX2LBNxfU764Q6yShX3G7bRcnXEE3HMW1LPhzTDF55qNFAxLFUV40dkPmsqipXxq/SEL6nI8fVlz5YQXt09WOFK6yFODL9Y5wH8sF9Cri7VARp6hiZHC8JBJipAIO7FCgPlHOGS5XSy0P9SfEgXFg48X1f7gmEi4xEbTKCzW13G3TvOwPg10GHTeDD5qr8BaMTMfHuoWtK/xyuYeOn0Yogy9Jee3cmCVlfDc6kVU0zigTDghBtBCFzfbfylsgjVnEUTT6ds0CWDzt3SW4ZpMiKAQ6PiX3dl7sm1Ju/pdqcXpFIEoKjEFcEoIh89xO5pC4BUL7+bOhEVFJuvuVOYl+XiqNyNQExQ9qi5iLE4zYXSoneEdGE/A+E+f31X6pLy5dmHbe7FCAfbo/T14OVPJIVVEm+BrrJ87zeifA7S3he8b+D5vS9IokHV4wiCosRqK94W0v9TfKJ+rA8pSra9H0Sqa+PZV8EvXxEzIYe+hzQMQzV7rKSk5I4+GCmn8w9xl5FWQVDF3K8OPEINOVassfqPT/Cd/OCzepVkkS1TdeCa+frWB/hpjdtRIzrIg3N/lkb7dZFMaiGR9KIqLi6wa9HzogIANW6RfofDaC31KNmkwk11CGGceX6N8iecEoIR4ICduo7jsX4lcmexIk17I="
-    - secure: "NH6s7+bd10GVscFCz26907xj1zeyjMNwGixR8u92ZsxLycFP1sdSjPAnQEO9Fs4JY84YR/VT0fw3MgEdlfkttubIlXQ8n5PhdKK1gCcyRPdfpoRLFUFswpExQS4R+UiYC5kTe6H1K4Tnt+rxw6x9AFfjEdawTygXHwCXYId8DaaTeNy+otDnKb2zkdHyTAN5ysp0P2nZx3lXH/4u/eR9oRnIaVYCjRzcuzNFDMRwJI0JxQ6WEpzOi4xOalQm90tOvKKQ7in2gPc7uKADMiaDCweFx/M/Et/QqcH0gAv/O4eWBPgcQK4hhjJ+WBvrmrqgduUwWYce/j9NM19ctP2X7AAx4F4RlJ4HBDzNeQH7uhaDPxTSnFuMLwuwPsdbAaJbtFdxh37SjoCHB8AzEUM9TquPLaVD8wkQHgYP7XKzAJBPk2Ow4mWH/GBnqo3BQMejZbwTg2c7BplvmT7edAnkzM1i26cNZS7K3GiD5amYFbWTT80Zio9ZIvSnRTzeRXTyPwaRoaXsSDearZPtWWJQgDxVJRuzrF5cO8I3bseB46F/XvmZYV03wOniN366dd2CRjlZmcQNMCTczeIQKJYFF4oyHOsJBg0FHyDipOgEqKfM6PboytT/F6zPuXdSmbKqUWtetk1c+hzX3Mt6OdSUWOJcCLdcNM0V91w7DAVpIRI="
-    - REPO=wesovilabs/taurus
-    - VERSION=0.0.1
-    - COMMIT=${TRAVIS_COMMIT::8}
-    - GLIDE_VERSION=0.12.3
+  - secure: kgtZBCmfuhxCfq16Q6M6YpQ1C0VfvZghEyhkj7UjqBkkfn92F2kzMKA9o9qgKa3r/uKw08hb4ic/FIau8WHhv+0yZrVSu8XhRyPjW3Hmp/BXl6gZ/Ksm4QGj/wx4Hve9WKlfTx0m6IRFmosszlttM25flJjqW7yI04KExnO4qdlubg6cc3aSpWyQLbsYrSiZzWwCExYYOsw+bqbPYzJq5/cItGOZIi1pkU4aieZj0pV1eguoUaYebABzzz20nfCJXLShlHFmaptVnhJdRmIgEzVUOmrb4BrRgzkwok8QUg1Ki9ntN79rW9UY3nbYjoOEVIKc/EWNjxZltQleAUqMac7R8XDNtvCesQw6hYec1ig0Vxr2IriGex/SVMmhXEQyM2RHf4T95EicPPZ1ZNe91b5kx5j69O0WEoBt79+blnaz85w6qYG6D6CIkuKs7ikhOOvZOUouhmY97bPdg/XUI8ngK32sRTAyjWORgV27R4zsCPyZxFA3mZZFQ94KZ0K335A7mo8d5/Dwcoe+ZpXkg4DkId+6J/9W1XjPX7wyd/O8RdDYHl+8Mm1JAZNHhOloHTOdoVfptYSUuwKbjFlHB16jtHzZtNdsuYzAdmKgym94nBKnvN16apDktinIW6DKtZZYKJBGNf4aEp75SzwJGO92/ThFKMjUHEvouB9rN+I=
+  - secure: CzbJG8BMu3fzcR0ic0DlgkdwRVUtq2MRKLMr29oTeLFJynyPPGhgaHCwHePrGFpA5D26XHVYXOMbX7NNXt2XwkTl+ugHQL2s9ZAnOYJSM425S/L/bfCAAjcIhNFdULxEsJMc2WWwcN0HYmmZSaTlQo5e7Xze0qdIMKVKPFYRZLceZ4E8erEckj5/+Ipcp1VkbU+i/1bjyVLB5SMCml+Y6712xCXJHqXd/hFem2+0cts7uBMCpmtk4/PJAMb+vFQyEdHojonXR/8s6wlGhiJNtZTNS/9zhB3fn/AEIjNKHTrPYjztiapqMmJD/nH2H2ByNWPwz3yQ1c5sp6Is1a4+f2shGgdo8E8tR9s3BIZRrAHgcLZW+19eOC2RIOS3TPNy+P81BfF7zG8jiVi92lwG7MytLDUzMc8dr3zsZ2vsB97UmK0Ys7wbno+wLbPEnqE0a7AYQmHe5fsYQ8tb+Fy1u6LbHHtsHF7m0Kayhw8Fne3TZmcdOJiqZas7Js33Lm5ysb3tv6P7piHHiFAoRKijulr57Sb5TYEnOFWVUVrfY8r49O28OOboFa+sT1FORS6cMZK22NE/z8vfbUdOqPZTitXwljQiY+ugf8Frz1AfE1v8Oewqm/PAMw6jj2Tif468fVhVD3UWjPLrMbq8mdMRSt6XYcNpH9m2ZwbRFmYwxbc="
+  - secure: rg6glpu1EE3GFRx18kHmbN/XP/krb9X9QahK6SSTSahYVqcmHiOZ2Fv0XAMUXpisnu2Nue5GXS0BXVdxfCN/pHQUH9ZxEtKmJNwwnv8Gu+db3+E400D8uParArX4NriVk3CEbYEEG20r7F6vRWR7KUhgMtMlEJWDSvap/IWT2OWyliQvL9t1S8gVirgtR8JqDsVyajx8/6i3jx8ZihmivowS035ObsOeu4ChDEgHZP5welUrltRMRtBRDP0eKp4f32JCMyD+Fb6LYdmpXzvuktgm6dufPaNyOrwdE91dinv0qOiVuYU5OajtXpGJZuOqpvdT0pYxrnDx5pazqRTyPRvei64Mf3mg0qqpJSiw39rorODZdrSA/D+uuiuxvPvfScjTK+tj2DbBHbfclogVn8Lky4tMO0smoD3wQ/Iyy+cBv0m+pf6SS01c3DM9HM/zFXE/xkrBNKoG+UBi6eusPfBIuKynJn8VumTl9BYcsdOWDlMB45d7pPw1UE7o1CREEcsLDd2TjQ9B7EPqJ2SZyQvmhG1SHPa3JBfhTeE+5mntEPNYmCcH0EpeRA0Pd9FUNGzR40wf5wjOq5TkqooZpMxV9z56XN1tF7IYW+dtvETDA0jBVteCANVR2/mKW1lUau5Sn5QKd5G2raOhcltjVkg7LN3SZpfktqsIhtQVtrA=
+  - REPO=swatlabs/taurus
+  - VERSION=0.0.1
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - GLIDE_VERSION=0.12.3
 before_script:
-  - make clean
-
+- make clean
 install:
-  - wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
-  - mkdir -p $HOME/bin
-  - tar -vxz -C $HOME/bin --strip=1 -f glide-v${GLIDE_VERSION}-linux-amd64.tar.gz
-  - export PATH="$HOME/bin:$PATH"
-
+- wget "https://github.com/Masterminds/glide/releases/download/v${GLIDE_VERSION}/glide-v${GLIDE_VERSION}-linux-amd64.tar.gz"
+- mkdir -p $HOME/bin
+- tar -vxz -C $HOME/bin --strip=1 -f glide-v${GLIDE_VERSION}-linux-amd64.tar.gz
+- export PATH="$HOME/bin:$PATH"
 script:
-  - make vet
-  - make fmt
-  - make lint
-  - make check test tests
-
+- make vet
+- make fmt
+- make lint
+- make check test tests
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-        docker build -t $REPO:$VERSION -f Dockerfile .;
-        docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS;
-        docker tag $REPO:$COMMIT $REPO:$VERSION;
-        docker push $REPO;
-    fi
-
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker build -t $REPO:$VERSION -f Dockerfile .;
+    docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD;
+    docker push $REPO:$VERSION;
+  fi
 notifications:
   email:
     recipients:
-      - developer@wesovilabs.com
+    - theswatlabs@gmail.com
     on_success: change
     on_failure: always
-
-

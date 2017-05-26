@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/BurntSushi/toml"
 	"github.com/op/go-logging"
-	"github.com/wesovilabs/taurus/util"
+	"github.com/swatlabs/taurus/util"
 	"time"
 )
 
