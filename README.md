@@ -6,7 +6,7 @@
 ## Setting up Taurus
 
 
-## API
+## Installation and documentation
 
 
 ## Contributors
