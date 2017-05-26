@@ -11,8 +11,8 @@ The purpose of this sample is basically demonstrate how we can integrate a new d
 
 To run the sample, we just need to follow the below steps:
 
-    - **docker-compose up -d** We just launch an initialized mongo database with a domain configuration.
-    - **sh create-domain.sh** We registering a domain into Taurus
+- **docker-compose up -d** We just launch an initialized mongo database with a domain configuration.
+- **sh create-domain.sh** We registering a domain into Taurus
 
 ...
 
